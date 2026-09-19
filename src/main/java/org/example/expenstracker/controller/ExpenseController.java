@@ -106,6 +106,4 @@ public class ExpenseController {
         return expenseService.getTotalExpenditure();
     }
 
-
-
 }
