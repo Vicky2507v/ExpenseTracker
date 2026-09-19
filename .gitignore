@@ -29,8 +29,5 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-# Spring boot database configuration
-application-local.properties
-
 ### VS Code ###
 .vscode/
