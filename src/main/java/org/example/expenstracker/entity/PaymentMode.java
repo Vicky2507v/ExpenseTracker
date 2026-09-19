@@ -1,9 +1,15 @@
 package org.example.expenstracker.entity;
 
-public enum PaymentMod {
+public enum PaymentMode {
 
     CASH,
     UPI,
-    QR_CODE
+    QRCODE;
+
+    public static PaymentMode fromString(String value) {
+
+        return PaymentMode.valueOf(value.trim().toUpperCase().replace("_", " ").replace(" ", ""));
+
+    }
 
 }
