@@ -1,5 +1,7 @@
 package org.example.expenstracker.controller;
 
+import jakarta.validation.Valid;
+import org.example.expenstracker.dto.ExpenseDto;
 import org.example.expenstracker.entity.Expense;
 import org.example.expenstracker.entity.PaymentMode;
 import org.example.expenstracker.service.ExpenseService;
@@ -16,18 +18,20 @@ public class ExpenseController {
     ExpenseService expenseService;
 
     @PostMapping("/addExepnse")
-    public boolean addUserExpense(@RequestBody Expense expense) {
+    public boolean addUserExpense(@Valid @RequestBody ExpenseDto expenseDto) {
 
         boolean status = false;
 
-        boolean val = expenseService.addExpense(expense);
+//        Expense expense = new Expense();
+
+        boolean val = expenseService.addExpense(expenseDto);
 
         if(val) {
             System.out.println("Added Expense Successfully");
             status = true;
         } else {
             System.out.println("Expense Failed to added");
-            status = false;
+            status=false;
         }
 
         return status;

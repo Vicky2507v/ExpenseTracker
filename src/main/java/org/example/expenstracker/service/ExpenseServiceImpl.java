@@ -1,5 +1,6 @@
 package org.example.expenstracker.service;
 
+import org.example.expenstracker.dto.ExpenseDto;
 import org.example.expenstracker.entity.Expense;
 import org.example.expenstracker.entity.PaymentMode;
 import org.example.expenstracker.repository.ExpenseRepository;
@@ -18,9 +19,17 @@ public class ExpenseServiceImpl implements ExpenseService {
     private ExpenseRepository expenseRepository;
 
     @Override
-    public boolean addExpense(Expense expense) {
+    public boolean addExpense(ExpenseDto expenseDto) {
 
         boolean status = false;
+
+        Expense expense = new Expense();
+
+        expense.setExpenditureAmount(expenseDto.getExpenditureAmount());
+        expense.setExpenditureReason(expenseDto.getExpenditureReason());
+        expense.setExpenditureDate(expenseDto.getExpenditureDate());
+        expense.setExpenditureCategory(expenseDto.getExpenditureCategory());
+        expense.setPaymentMode(expenseDto.getPaymentMode());
 
         Expense e = expenseRepository.save(expense);
 
@@ -31,13 +40,18 @@ public class ExpenseServiceImpl implements ExpenseService {
                 status = true;
             } else {
                 System.out.println("Data Not Added, try again");
-                 status = false;
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
+        catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+
         return status;
+
     }
+
 
     @Override
     public List<Expense> getAllExpense() {
@@ -97,6 +111,5 @@ public class ExpenseServiceImpl implements ExpenseService {
         return expenseRepository.getTotalExpenditure();
 
     }
-
 
 }

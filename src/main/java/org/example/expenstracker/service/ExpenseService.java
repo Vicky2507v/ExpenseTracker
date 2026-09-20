@@ -1,5 +1,6 @@
 package org.example.expenstracker.service;
 
+import org.example.expenstracker.dto.ExpenseDto;
 import org.example.expenstracker.entity.Expense;
 import org.example.expenstracker.entity.PaymentMode;
 
@@ -9,7 +10,7 @@ import java.util.Optional;
 public interface ExpenseService {
 
     // insert
-    public boolean addExpense(Expense expense);
+    public boolean addExpense(ExpenseDto expenseDto);
 
     // display
     public List<Expense> getAllExpense();
